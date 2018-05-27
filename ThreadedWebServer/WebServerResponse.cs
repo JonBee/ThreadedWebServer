@@ -1,23 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.IO;
 
 namespace JonBee.ThreadedWebServer
 {
+    /// <summary>
+    /// WebServerResponse contains the data required to serve up a complete response to a server request
+    /// </summary>
     public class WebServerResponse
     {
         public ContentType ContentType;
         public byte[] Data;
+
+        /// <summary>
+        /// Response status code for the request; 200 = OK (default), 403 = FORBIDDEN, 404 = FILE_NOT_FOUND, etc.
+        /// </summary>
         public int StatusCode = 200;
 
+        /// <summary>
+        /// Create a new WebServerResponse instance and set it's content-type and binary data
+        /// </summary>
+        /// <param name="contentType"></param>
+        /// <param name="data"></param>
         public WebServerResponse(ContentType contentType, byte[] data)
         {
             Data = data;
             ContentType = contentType;
         }
 
+        /// <summary>
+        /// Create a new WebServerResponse instance and set it's content-type to ContentType.HTML and set it's Data as a UTF8 string
+        /// </summary>
+        /// <param name="html"></param>
         public WebServerResponse(string html)
         {
             ContentType = ContentType.HTML;

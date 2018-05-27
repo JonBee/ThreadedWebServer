@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
+﻿using System.Net;
 
 namespace JonBee.ThreadedWebServer
 {
+    /// <summary>
+    /// RequestHandler is the base class used for responding to requests to the ThreadedWebServer
+    /// </summary>
     public class RequestHandler
     {
         public virtual WebServerResponse HandleRequest(HttpListenerRequest request)

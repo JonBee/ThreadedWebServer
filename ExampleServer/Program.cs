@@ -19,8 +19,36 @@ namespace ExampleServer
             //The FileHandler automatically presents files if they are found, and lists directory contents if told to do so.
             server.RegisterDefaultHandler(new FileHandler(true));
 
+            //Register our custom handler so that it responds to requests for root or "index.html"
+            server.RegisterHandler("", new CustomRequestHandler());
+            server.RegisterHandler("index.html", new CustomRequestHandler());
+
             //Start listening for requests
+            Console.WriteLine("Webserver running...");
             server.Run();
+        }
+    }
+
+    /// <summary>
+    /// This is our custom RequestHandler, it supplies a basic html page when it receives a request
+    /// </summary>
+    class CustomRequestHandler : RequestHandler
+    {
+        //Override this method to enable your custom logic to respond to the request
+        public override WebServerResponse HandleRequest(HttpListenerRequest request)
+        {
+            string html = @"
+                <html>
+                    <head>
+                        <meta http-equiv=""content - type"" content=""text/html; charset = UTF-8\"">
+                        <title>Custom request handler</title>
+                      </head>
+                    <body>
+                        <p>Hello, World!</p>
+                    </body>
+                </html>
+            ";
+            return new WebServerResponse(html);
         }
     }
 }

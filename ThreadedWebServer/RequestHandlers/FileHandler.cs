@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net;
+﻿using System.Net;
 using System.IO;
 
 namespace JonBee.ThreadedWebServer
 {
+    /// <summary>
+    /// The FileHandler is a basic RequestHandler that will attempt to serve up files and directory listings automatically
+    /// </summary>
     public class FileHandler : RequestHandler
     {
+        //This variable controls the ability of the FileHandler to return the contents of a directory. If false, it returns a 403, forbidden.
         bool allowDirectoryListings = false;
 
         public FileHandler(bool showFileLists)
@@ -18,7 +18,7 @@ namespace JonBee.ThreadedWebServer
 
         public override WebServerResponse HandleRequest(HttpListenerRequest request)
         {
-            WebServerResponse response = new WebServerResponse("<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset = UTF-8\"></head><body><p>Hi there</p></body></html>");
+            WebServerResponse response;
 
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), request.Url.LocalPath.TrimStart('/'));
             if (Directory.Exists(filePath))
@@ -59,13 +59,14 @@ namespace JonBee.ThreadedWebServer
             }
             else if (File.Exists(filePath))
             {
+                //File exists, attempt to return that file with the correct content-type
                 response = WebServerResponse.FromFile(filePath);
             }else
             {
+                //File or directory does not exist, return a 404
                 response = new WebServerResponse("<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset = UTF-8\"></head><body><p>Unable to find the specified file.</p></body></html>") { StatusCode = 404 };
             }
-            //request.Url.LocalPath
-            Console.WriteLine(filePath);
+
             return response;
         }
     }
