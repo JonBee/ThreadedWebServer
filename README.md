@@ -1,6 +1,17 @@
 # ThreadedWebServer
 A library that exposes a small, easy-to-use, and performant webserver for use in .NET applications
 
+### Features
+  * Easy-to-implement threaded webserver
+  * Supports common MIME types with the ability to easy define your own
+  * Simple mapping of request URLs to custom logic
+  * Built-in handlers allow basic functionality like automatically serving up files and directory content lists
+### Planned Features
+  * Simple session system that allows easy user management and data-persistence
+  * Cookie manager
+  * HTML markup generator
+
+
 ## Usage
 Using the library is extremely easy and can be done with only three lines of code (if you don't want it to do much)
 
