@@ -12,19 +12,15 @@ namespace ExampleServer
     {
         static void Main(string[] args)
         {
+            //Initialize a new ThreadedWebServer instance and configure it to listen for all requests at http://localhost:4224/
             ThreadedWebServer server = new ThreadedWebServer(new List<string>() { "http://localhost:4224/" });
-            server.RegisterDefaultHandler(new FileHandler());
-            server.Run();
-        }
-    }
 
-    public class FileHandler : RequestHandler
-    {
-        public override WebServerResponse HandleRequest(HttpListenerRequest request)
-        {
-            WebServerResponse response = new WebServerResponse("<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset = UTF-8\"></head><body><p>Hi there</p></body></html>");
-            Console.WriteLine(request.Url.LocalPath);
-            return response;
+            //Tell the server to use the built-in File Handler by default if no other handler can be found.
+            //The FileHandler automatically presents files if they are found, and lists directory contents if told to do so.
+            server.RegisterDefaultHandler(new FileHandler(true));
+
+            //Start listening for requests
+            server.Run();
         }
     }
 }

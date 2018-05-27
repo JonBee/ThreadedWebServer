@@ -72,6 +72,7 @@ namespace JonBee.ThreadedWebServer
 
             //Test
             WebServerResponse wsresponse = defaultHandler.HandleRequest(request);
+            response.StatusCode = wsresponse.StatusCode;
             response.ContentType = wsresponse.ContentType.Value;
             response.ContentLength64 = wsresponse.Data.Length;
             response.OutputStream.Write(wsresponse.Data, 0, wsresponse.Data.Length);

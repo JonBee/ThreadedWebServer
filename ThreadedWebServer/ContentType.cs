@@ -137,7 +137,15 @@ namespace JonBee.ThreadedWebServer
         {
             get
             {
-                return new ContentType("image/GIF");
+                return new ContentType("image/gif");
+            }
+        }
+
+        public static ContentType CSS
+        {
+            get
+            {
+                return new ContentType("text/css");
             }
         }
     }
