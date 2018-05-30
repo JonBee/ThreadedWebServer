@@ -51,7 +51,7 @@ In this case, we've bound our custom handler to requests for index.html. Note, t
 The registry system supports the use of the * wildcard when registering handlers. There are some limitations to this though. You can only have a single wildcard and it must be the last character of the request. If multiple wildcard characters appear in the designated path, all but the last occurence of the character will be treated literally.
 
 In cases where multiple registered handlers match the requested URL, the handler that was registered first takes precedence.
-```chsarp
+```csharp
 server.RegisterHandler("mydirectory/*", new MyCustomRequestHandler()); //Intercepts all requests in "mydirectory"
 server.RegisterHandler("*", new MyCustomRequestHandler()); //Intercepts all requests, excluding those in "mydirectory"
 ```
