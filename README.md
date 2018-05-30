@@ -3,7 +3,7 @@ A library that exposes a small, easy-to-use, and performant webserver for use in
 
 ### Features
   * Easy-to-implement threaded webserver
-  * Supports common MIME types with the ability to easy define your own
+  * Supports common MIME types with the ability to easily define your own
   * Simple mapping of request URLs to custom logic
   * Built-in handlers allow basic functionality like automatically serving up files and directory content lists
 ### Planned Features
@@ -58,5 +58,5 @@ server.RegisterHandler("*", new MyCustomRequestHandler()); //Intercepts all requ
 ### Default Handlers
 In cases where no handler can be found, the registry system defaults to the built-in FileHandler. This can be changed, however, by calling the RegisterDefaultHandler() method:
 ```csharp
-server.RegisterHandler(new MyCustomRequestHandler());
+server.RegisterDefaultHandler(new MyCustomRequestHandler());
 ```
