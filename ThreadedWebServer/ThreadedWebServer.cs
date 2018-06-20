@@ -105,7 +105,7 @@ namespace JonBee.ThreadedWebServer
             WebServerResponse wsresponse = handler.HandleRequest(request);
 
             //Write response
-            response.SetCookie(new Cookie("test", "testvalue"));
+            //response.SetCookie(new Cookie("test", "testvalue"));
             response.StatusCode = wsresponse.StatusCode;
             response.ContentType = wsresponse.ContentType.Value;
             response.ContentLength64 = wsresponse.Data.Length;
